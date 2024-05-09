@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express();
 const router = require('./routes/useRoute');
+const cookieParser = require('cookie-parser');
 
 const PORT = process.env.PORT || 4000;
 
@@ -15,6 +16,8 @@ app.listen(PORT,()=>{
 })
 // middlewares
 app.use(express.json());
+app.use(cookieParser());
+
 
 app.use('/user',router);
 // db connect 
