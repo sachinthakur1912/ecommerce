@@ -113,7 +113,7 @@ const userCtrl = {
         console.error(error)
      }  
   },
-  getUsers:async(req,res) => {
+  getUser:async(req,res) => {
     try{
         const user = await Users.findById(req.user.id).select('-password')
         if(!user) return res.json({msg:"User not found"})
