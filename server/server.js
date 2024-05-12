@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express();
-const router = require('./routes/useRoute');
+const userRouter = require('./routes/useRoute');
+const categoryRouter = require('./routes/categoryRoutes')
 const cookieParser = require('cookie-parser');
 
 const PORT = process.env.PORT || 4000;
@@ -18,8 +19,9 @@ app.listen(PORT,()=>{
 app.use(express.json());
 app.use(cookieParser());
 
-
-app.use('/user',router);
+// router
+app.use('/user',userRouter);
+app.use('/api',categoryRouter);
 // db connect 
 const db = require("./config/database");
 
