@@ -49,7 +49,7 @@ const userCtrl = {
   },
   refreshToken: async (req, res) => {
     try {
-        // console.log(req.cookies)
+      // console.log(req.cookies)
       const rf_token = req.cookies.refreshtoken;
       if (!rf_token) {
         return res.status(400).json({
@@ -60,68 +60,67 @@ const userCtrl = {
         if (err)
           return res.status(400).json({ msg: "Please login or register" });
         const accessToken = createAccessToken({ id: user.id });
-        res.json({user,accessToken});
+        res.json({ user, accessToken });
       });
-     
     } catch (error) {
-        console.error(error);
+      console.error(error);
       return res.status(500).json({
         msg: error.message,
       });
     }
   },
-  login: async (req,res) => {
-    try{
-        const {email,password} = req.body;
-        const user = await Users.findOne({email})
-        if(!user) {
-            return res.status(400).json({
-                msg:"User not registered"
-            })
-        } 
+  login: async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const user = await Users.findOne({ email });
+      if (!user) {
+        return res.status(400).json({
+          msg: "User not registered",
+        });
+      }
 
-        const isMatch = await bcrypt.compare(password,user.password)
-        if(!isMatch){
-            res.status(400).json({
-                msg:"Incorrect username or password"
-            })
-        }
-        const accessToken = createAccessToken({id:user._id})
-        const refreshToken = createRefreshToken({id:user._id})
-        // console.log(refreshToken);
-        res.cookie('refreshtoken',refreshToken,{
-            httpOnly:true,
-            path:'/user/refresh_token'
-        })
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        res.status(400).json({
+          msg: "Incorrect username or password",
+        });
+      }
+      const accessToken = createAccessToken({ id: user._id });
+      const refreshToken = createRefreshToken({ id: user._id });
+      // console.log(refreshToken);
+      res.cookie("refreshtoken", refreshToken, {
+        httpOnly: true,
+        path: "/user/refresh_token",
+      });
 
-        res.json({
-            accessToken
-        })
-    }catch(error){
-        return res.status(500).json({
-            msg:error.message
-        })
+      res.json({
+        accessToken,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        msg: error.message,
+      });
     }
   },
-  logout: async (req,res) => {
-     try{
-        res.clearCookie('refreshtoken',{path:'/user/refresh_token'})
-        return res.json({
-            msg:"Loged out"
-        })
-     }catch(error){
-        console.error(error)
-     }  
-  },
-  getUser:async(req,res) => {
-    try{
-        const user = await Users.findById(req.user.id).select('-password')
-        if(!user) return res.json({msg:"User not found"})
-        res.json(user)
-    }catch(error){
-       return res.status(500).json({msg:error.message})
+  logout: async (req, res) => {
+    try {
+      res.clearCookie("refreshtoken", { path: "/user/refresh_token" });
+      return res.json({
+        msg: "Loged out",
+      });
+    } catch (error) {
+      console.error(error);
     }
-  }
+  },
+  getUser: async (req, res) => {
+    try {
+      const user = await Users.findById(req.user.id).select("-password");
+      if (!user) return res.json({ msg: "User not found" });
+      res.json(user);
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
 };
 
 const createAccessToken = (payload) => {
