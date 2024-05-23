@@ -12,7 +12,7 @@ export default function Header() {
       </div>
       <div className='logo'>
         <h1>
-          <Link to='/'>30DC Shop</Link>
+          <Link to='/'>Shop Sphere</Link>
         </h1>
       </div>
       <ul>

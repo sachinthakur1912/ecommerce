@@ -51,7 +51,7 @@ const productCtrl = {
         .sorting()
         .pagination();
       const products = await features.query;
-      res.json({ result: products.length });
+      res.json(products);
     } catch (error) {
       return res.status(500).json({
         msg: error.message,
