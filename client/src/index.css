@@ -23,4 +23,5 @@ a{
   cursor: pointer;
  }
  @import url('./components/headers/header.css');
- @import url('./components/mainpages/utils/productList/productList.css')
+ @import url('./components/mainpages/utils/productList/productList.css');
+ @import url('./components/mainpages/utils/detailProducts/detailProduct.css')

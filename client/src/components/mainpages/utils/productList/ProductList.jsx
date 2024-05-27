@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 export default function ProductList({product}) {
-    console.log(product)
+    // console.log(product)
   return (
     <div className='product_card'>
       <img src={product.images.link}  />
