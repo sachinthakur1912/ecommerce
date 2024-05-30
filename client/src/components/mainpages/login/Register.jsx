@@ -24,35 +24,52 @@ export default function Register() {
   };
   console.log(user);
   return (
-    <div className="register-page">
-      <form onSubmit={registerHandler}>
+    <div className="login-page">
+       <h3 className="login-heading">Register</h3>
+
+      <form onSubmit={registerHandler} className="form-container">
+        <div className="input-field">
+        <div className="input-container">
+        <label>Name</label>
         <input
           type="text"
           name="name"
           required
-          placeholder="Name"
+          placeholder="Please Enter Your Name"
           value={user.name}
           onChange={onChangeHandler}
         />
+        </div>
+        <div className="input-container">
+        <label>Email Address</label>
         <input
           type="email"
           name="email"
           required
-          placeholder="Email"
+          placeholder="Please Enter Your Email"
           value={user.email}
           onChange={onChangeHandler}
         />
+        </div>
+        <div className="input-container">
+        <label>Password</label>
         <input
           type="password"
           name="password"
           required
-          placeholder="Password"
+          placeholder="Please Enter Your Password"
           value={user.password}
           onChange={onChangeHandler}
         />
-        <div className="row">
-          <button type="submit">Register</button>
-          <Link to="/login">Login</Link>
+        </div>
+        </div>
+       
+       
+        
+        
+        <div className="register-button-container">
+          <button type="submit">Sign Up</button>
+          <Link to="/login">Back to login</Link>
         </div>
       </form>
     </div>

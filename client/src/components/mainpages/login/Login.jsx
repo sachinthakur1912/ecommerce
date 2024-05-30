@@ -24,24 +24,35 @@ export default function Login() {
   // console.log(user)
   return (
     <div className="login-page">
-      <form onSubmit={loginHandler}>
+      <h3 className="login-heading">Login</h3>
+      <form onSubmit={loginHandler} className="form-container">
+        <div className="input-field">
+        <div className="input-container">
+        <label>Email Address</label>
         <input
           type="email"
           name="email"
           required
-          placeholder="Email"
+          placeholder="Please Enter Your Email"
           value={user.email}
           onChange={onChangeHandler}
         />
+        </div>
+        <div className="input-container">
+          <label>Password</label>
         <input
           type="password"
           name="password"
           required
-          placeholder="Password"
+          placeholder="Please Enter Your Password"
           value={user.password}
           onChange={onChangeHandler}
         />
-        <div className="row">
+        </div>
+        
+        </div>
+      
+        <div className="button-container">
           <button type="submit">Login</button>
           <Link to="/register">Register</Link>
         </div>
