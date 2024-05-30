@@ -8,9 +8,10 @@ import axios from 'axios';
 // import './header.css'
 export default function Header() {
   const state = useContext(GlobalState)
-  console.log(state)
+  // console.log(state)
   const [isLoggedIn,setIsLoggedIn] = state.UserApi.isLoggedIn
   const [isAdmin,setIsAdmin] = state.UserApi.isAdmin
+  const [cart] = state.UserApi.cart
 
   const adminRouter = ()=>{
     return(
@@ -68,9 +69,9 @@ export default function Header() {
       {
         isAdmin?'': (<div className='cart-icon'>
         <span>
-          0
+          {cart.length}
         </span>
-        <Link><IoMdCart size={30} /></Link>
+        <Link to='/cart' ><IoMdCart size={30} /></Link>
       </div>)
       }
      

@@ -60,7 +60,7 @@ const productCtrl = {
   },
   createProducts: async (req, res) => {
     try {
-      const { product_id, title, description, content, images, category } =
+      const { product_id, title, description,price, content, images, category } =
         req.body;
 
       if (!images) return res.status(400).json({ msg: "No image upload" });
@@ -74,6 +74,7 @@ const productCtrl = {
         product_id,
         title: title.toLowerCase(),
         description,
+        price,
         content,
         images,
         category,
@@ -108,6 +109,7 @@ const productCtrl = {
         {
           title: title.toLowerCase(),
           description,
+          price,
           content,
           images,
           category,

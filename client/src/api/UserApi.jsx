@@ -4,6 +4,7 @@ import  { useEffect, useState } from 'react'
 export default function UserApi(token) {
     const [isLoggedIn,setIsLoggedIn] = useState(false)
     const [isAdmin,setIsAdmin] = useState(false)
+    const [cart,setCart] = useState([])
 
     useEffect(()=>{
         if(token){
@@ -26,8 +27,24 @@ export default function UserApi(token) {
        
        
     },[token])
+    const addToCart =(product)=>{
+        // console.log(product)
+        if(!isLoggedIn) return alert("Please login")
+        const check = cart.every(item=>{
+            return item.id !== product._id
+        })
+        if(check){
+            setCart([...cart,{...product,quantity:1}])
+        }
+        else{
+            alert("This product is already added")
+        }
+    }
+    // console.log(cart);
   return {
    isLoggedIn:[isLoggedIn,setIsLoggedIn],
-   isAdmin:[isAdmin,setIsAdmin]
+   isAdmin:[isAdmin,setIsAdmin],
+   cart:[cart,setCart],
+   addToCart:addToCart
   }
 }
